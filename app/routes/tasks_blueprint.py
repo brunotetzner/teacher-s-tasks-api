@@ -7,5 +7,5 @@ bp = Blueprint("bp_categories", __name__, url_prefix="/api/tasks")
 
 bp.get("")(get_task_controller)
 bp.post("")(create_task_controller)
-bp.patch("")(patch_task_controller)
-bp.delete("")(delete_task_controller)
+bp.patch("/<int:id>")(patch_task_controller)
+bp.delete("/<int:id>")(delete_task_controller)

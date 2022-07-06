@@ -1,8 +1,7 @@
-import json
 from flask import jsonify, request
 from app.models import TaskModel
 from flask import current_app
-
+from sqlalchemy.orm.exc import UnmappedInstanceError
 def create_task_controller():
     data = request.get_json()
     session = current_app.db.session
@@ -17,8 +16,33 @@ def get_task_controller():
    all_tasks = TaskModel.query.all()
    return jsonify(all_tasks)
 
-def patch_task_controller():
-    return "patching", 200
 
-def delete_task_controller():
-    return "deleting", 204
+def patch_task_controller(id):
+    try:
+        task = TaskModel.query.get(id)
+        data = request.get_json()
+        session = current_app.db.session
+
+        for key, value in data.items():
+             setattr(task, key, value)
+
+        session.add(task)
+        session.commit()
+
+        return jsonify(task), 201
+    except AttributeError:
+        return {"Error": "Task not found"}, 404
+
+
+def delete_task_controller(id):
+    try:
+        task = TaskModel.query.get(id)
+        
+        session = current_app.db.session
+
+        session.delete(task)
+        session.commit()
+        return "", 204
+
+    except UnmappedInstanceError:
+        return {"Error": "Task not found"}, 404
