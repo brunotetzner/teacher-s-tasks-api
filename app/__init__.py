@@ -2,10 +2,11 @@ from flask import Flask
 from environs import Env
 from app.configs import database, migrations 
 from app import routes 
+from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
-
+   
     env  = Env()
     env.read_env()
 
