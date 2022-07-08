@@ -14,12 +14,18 @@ API desenvolvida para funcionar como uma lista de tarefas. Visando ajudar profes
 
 # Rodando o projeto
 
-> Para rodar essa aplicação é necessário ter o python na versão 3.8 ou acima.
+> Para rodar essa aplicação é necessário ter o python na versão 3.8 ou acima. Também é necessário ter o PostgreSQL instalado na sua maquina.
 
 Após clonar o repositório rode o seguinte comando no terminal na diretório do projeto:
 
 ```
 pip install -r requirements.txt
+```
+Após isso crie um arquivo `.env` tendo como base o arquivo `.env.example`. Crie um banco de dados e preencha a variável de ambiente `SQLALCHEMY_DATABASE_URI` com as informações do seu banco.
+
+Depois basta rodar as migrations do projeto:
+```
+flask db upgrade
 ```
 
 Depois basta rodar o projeto com o comando:
