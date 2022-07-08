@@ -28,7 +28,7 @@ Depois basta rodar as migrations do projeto:
 flask db upgrade
 ```
 
-Depois basta rodar o projeto com o comando:
+Por fim basta rodar o projeto com o comando:
 
 ```
 flask run
