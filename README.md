@@ -16,13 +16,27 @@ API desenvolvida para funcionar como uma lista de tarefas. Visando ajudar profes
 
 > Para rodar essa aplicação é necessário ter o python na versão 3.8 ou acima. Também é necessário ter o PostgreSQL instalado na sua maquina.
 
-Após clonar o repositório rode o seguinte comando no terminal na diretório do projeto:
+Após clonar o repositório, crie e inicie o ambiente virtual:
+```
+python -m venv venv
+```
 
+```
+source venv/bin/activate
+```
+
+Após iniciado, o prefixo '(venv)' deverá aparecer no inicio do caminho das pastas no terminal.
+
+Após isso instale as dependências do arquivo requirements.txt
 ```
 pip install -r requirements.txt
 ```
-Após isso crie um arquivo `.env` tendo como base o arquivo `.env.example`. Crie um banco de dados e preencha a variável de ambiente `SQLALCHEMY_DATABASE_URI` com as informações do seu banco.
+Crie um arquivo `.env` tendo como base o arquivo `.env.example`. Crie um banco de dados e preencha a variável de ambiente `SQLALCHEMY_DATABASE_URI` com as informações do seu banco.
 
+exemplo:
+```
+SQLALCHEMY_DATABASE_URI=postgresql://jonDoe:1234@localhost:5432/teacher_db
+```
 Depois basta rodar as migrations do projeto:
 ```
 flask db upgrade
